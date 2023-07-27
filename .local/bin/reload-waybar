@@ -1,0 +1,6 @@
+#!/bin/bash
+
+killall waybar
+echo "waybar killed"
+echo "waybar started"
+waybar > /dev/null 2>&1 &

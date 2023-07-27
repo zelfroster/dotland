@@ -1,0 +1,156 @@
+{
+  "layer": "top",
+  "modules-left": [
+    "custom/launcher",
+    "wlr/workspaces",
+    "custom/wallpaper",
+    "tray"
+  ],
+  "modules-center": ["custom/media", "custom/cava", "cava"],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "network",
+    "pulseaudio",
+    "clock",
+    "custom/power"
+  ],
+
+  "wlr/workspaces": {
+    "active-only": false,
+    "on-click": "activate",
+    "persistent_workspaces": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": ""
+    },
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": ""
+      // "default": "  "
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
+  "hyprland/window": {
+    "format": "{}"
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    // "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-wifi": "  {essid}",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "  {ifname} via {gwaddr}",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "{icon}  {volume}%",
+    "format-muted": "  {volume}%",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+  "custom/cava": {
+    "exec": "sleep 1 && cava -p $XDG_CONFIG_HOME/cava/waybar_cava.conf | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'"
+  },
+  "cava": {
+    "cava_config": "$XDG_CONFIG_HOME/cava/config",
+    "framerate": 30,
+    "autosens": 1,
+    "sensitivity": 100,
+    "bars": 14,
+    "lower_cutoff_freq": 50,
+    "higher_cutoff_freq": 10000,
+    "method": "pulse",
+    "source": "auto",
+    "stereo": true,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "monstercat": false,
+    "waves": false,
+    "noise_reduction": 0.77,
+    "input_delay": 2,
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "actions": {
+      "on-click-right": "mode"
+    }
+  },
+  "clock": {
+    "timezone": "Asia/Kolkata",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "  {:%H:%M}",
+    "format-alt": "󰃮  {:%d/%m/%Y}"
+  },
+  "cpu": {
+    "interval": 15,
+    "format": "  {}%",
+    "max-length": 10
+  },
+  "memory": {
+    "interval": 30,
+    "format": "  {}%",
+    "max-length": 10
+  },
+  "custom/window": {
+    "format": "<b>{}</b>",
+    "interval": 1,
+    "exec": "hyprctl activewindow | grep class | awk '{print $2}'"
+  },
+  "custom/media": {
+    "format": "{icon}  {}",
+    "return-type": "json",
+    "max-length": 30,
+    "format-icons": {
+      "spotify": "",
+      "default": ""
+    },
+    "escape": true,
+    "exec": "python3 $HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+  "custom/spotify": {
+    "exec": "python3 $HOME/.config/waybar/scripts/mediaplayer.py --player spotify",
+    "format": "{}  ",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+  "custom/launcher": {
+    "format": "",
+    "on-click": "pkill wofi; wofi --show drun --allow-images",
+    "on-click-right": "killall wofi"
+  },
+  "custom/power": {
+    "format": "",
+    "on-click": "wlogout"
+    // "on-click": "bash ~/.config/rofi/leave/leave.sh"
+  },
+  "custom/updates": {
+    "format": "{} Update(s)",
+    "exec": "checkupdates | wc -l",
+    "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
+    "interval": 15,
+    "on-click": "alacritty -e paru -Syu && notify-send 'The system has been updated' "
+  },
+  "custom/wallpaper": {
+    "format": " ",
+    "on-click": "bash set-wall"
+  }
+}

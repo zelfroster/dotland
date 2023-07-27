@@ -1,0 +1,37 @@
+#!/bin/bash
+
+colors_file="$XDG_CACHE_HOME/wal/colors"
+output_file="$XDG_CONFIG_HOME/foot/colors.ini"
+
+echo "[colors]" > "$output_file"
+
+background=$(cat $XDG_CACHE_HOME/wal/colors | head -n 1)
+
+echo "background=${background:1}" >> "$output_file"
+echo "" >> "$output_file"
+
+echo "## Normal/regular colors (color palette 0-7)" >> "$output_file"
+
+i=0
+while IFS= read -r color; do
+    echo "regular$i=${color:1}" >> "$output_file"
+    ((i++))
+    if [ "$i" -eq 8 ]; then
+        break
+    fi
+done < "$colors_file"
+
+echo "" >> "$output_file"
+echo "## Bright colors (color palette 8-15)" >> "$output_file"
+
+i=0
+while IFS= read -r color; do
+    if [ "$i" -ge 8 ]; then
+        echo "bright$((i - 8))=${color:1}" >> "$output_file"
+    fi
+    ((i++))
+    if [ "$i" -eq 16 ]; then
+        break
+    fi
+done < "$colors_file"
+
