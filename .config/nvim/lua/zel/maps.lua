@@ -21,7 +21,7 @@ k.set("v", "J", ":m '>+1<CR>gv=gv")
 k.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Append the next Line to the current line
-k.set("n", "J", "mzJ`z")
+k.set("n", "<leader>j", "mzJ`z")
 
 -- Movements with cursor always in center
 k.set("n", "<C-d>", "<C-d>zz")
@@ -90,6 +90,6 @@ k.set('', '<F9>', ':!g++ -o %< % && ./%< <CR>')
 -- Swap TAB keymap to buffers if using buffers instead of TABs
 -- k.set("n", "gt", ":bnext<CR>")
 -- k.set("n", "gT", ":bprevious<CR>")
--- -- tab mappings
--- k.set("n", "<TAB>", "gt")
--- k.set("n", "<S-TAB>", "gT")
+-- tab mappings
+k.set("n", "K", "gt")
+k.set("n", "J", "gT")

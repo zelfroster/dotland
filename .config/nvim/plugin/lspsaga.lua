@@ -47,7 +47,7 @@ local k = vim.keymap.set
 
 k('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
 k('n', '<leader>ld', '<Cmd>Lspsaga show_line_diagnostics<CR>', opts, { desc = '[L]ine [D]iagnostics' })
-k('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts, { desc = { '[K] Hover Doc' } })
+k('n', 'H', '<Cmd>Lspsaga hover_doc<CR>', opts, { desc = { '[K] Hover Doc' } })
 k('n', 'gd', '<Cmd>Lspsaga lsp_finder<CR>', opts, { desc = '[G]oto [D]efinition' })
 k('i', '<C-h>', '<Cmd>lua vim.lsp.buf.signature_help()<CR>', opts, { desc = 'Signature [C-h]elp' })
 k('n', '<leader>pd', '<Cmd>Lspsaga peek_definition<CR>', opts, { desc = '[P]eek [D]efinition' })

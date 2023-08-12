@@ -1,4 +1,4 @@
-@import "mocha.css";
+@import "everforest.css";
 
 * {
   border: none;
@@ -10,8 +10,8 @@
 }
 
 window#waybar {
-  margin: 4px 10px;
-  background: alpha(@crust, 0);
+  margin: 0px 10px;
+  background-color: alpha(@bg, 1);
   transition-property: background-color;
   transition-duration: 0.5s;
   padding: 4px;
@@ -20,13 +20,11 @@ window#waybar {
 window#waybar.hidden {
   opacity: 0.2;
 }
-
 #window {
-  margin-top: 4px;
   margin-left: 8px;
   padding: 4px 10px;
-  background: @crust;
-  color: @sky;
+  background: @bg;
+  color: @aqua;
   border-radius: 8px;
 }
 
@@ -36,23 +34,24 @@ button:hover {
 }
 
 #workspaces {
-  color: @lavender;
-  background: @crust;
+  color: @blue;
+  background: @bg;
   border-radius: 8px;
-  margin-top: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
   padding: 0px 4px;
 }
 
 #workspaces button {
   transition: none;
-  color: @surface0;
+  color: @gray0;
   padding-left: 6px;
   padding-right: 10px;
   border-radius: 8px;
 }
 
 #workspaces button.active {
-  color: @lavender;
+  color: @blue;
   border-radius: 8px;
 }
 
@@ -77,18 +76,20 @@ button:hover {
 #custom-spotify,
 #custom-media,
 #custom-cava,
+#custom-clock,
 #custom-window {
   transition: none;
-  margin-top: 4px;
   margin-left: 8px;
-  padding: 4px 12px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 2px 8px;
   border-radius: 8px;
-  background: @crust;
+  background: @bg;
   /* box-shadow: 0px 1px 2px 0px #000000; */
 }
 
 #network {
-  color: @mauve;
+  color: @purple;
 }
 
 #pulseaudio {
@@ -96,11 +97,16 @@ button:hover {
 }
 
 #clock {
-  color: @lavender;
+  color: @blue;
+}
+
+#custom-clock {
+  padding: 0px 12px 0px 8px;
+  color: @flamingo;
 }
 
 #memory {
-  color: @peach;
+  color: @orange;
 }
 
 #cpu {
@@ -108,31 +114,27 @@ button:hover {
 }
 
 #custom-cava {
-  color: @lavender;
+  color: @green;
 }
 
 #tray {
-  color: @text;
+  color: @fg;
 }
 
 #custom-launcher {
   margin-left: 10px;
   margin-right: 8px;
-  padding: 0px 18px 0px 10px;
-  font-size: 20px;
   color: @blue;
 }
 
 #custom-power {
-  margin-right: 10px;
-  padding: 0px 14px 0px 10px;
-  border-radius: 8px;
-  font-size: 20px;
+  margin-right: 2px;
+  padding: 0px 12px 0px 8px;
   color: @red;
 }
 
 #custom-window {
-  color: @flamingo;
+  color: @aqua;
 }
 
 #custom-wallpaper {
@@ -143,9 +145,16 @@ button:hover {
 
 #custom-spotify,
 #custom-media {
-  color: @pink;
+  color: @aqua;
+}
+#custom-updates {
+  color: @flamingo;
 }
 
 #network.disconnected {
   color: @red;
+}
+
+#tooltip {
+  background: red;
 }

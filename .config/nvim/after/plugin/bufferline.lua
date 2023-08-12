@@ -12,14 +12,14 @@ bufferline.setup({
     show_close_icon = false,
     offsets = { { filetype = "NvimTree", text = "File Explorer" } },
     color_icons = true,
-    indicator = {
-      -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
-      style = 'none',
-      -- style = 'icon' | 'underline' | 'none',
-    },
+    -- indicator = {
+    --   icon = '▎', -- this should be omitted if indicator style is not 'icon'
+    --   style = 'icon',
+    --   -- style = 'icon' | 'underline' | 'none',
+    -- },
   },
-  -- highlights = highlights,
-  highlights = require("catppuccin.groups.integrations.bufferline").get(),
+  highlights = highlights,
+  -- highlights = require("catppuccin.groups.integrations.bufferline").get(),
   -- highlights = require("catppuccin.groups.integrations.bufferline").get {
   --   styles = { "italic", "bold" },
   --   custom = {
@@ -35,28 +35,78 @@ bufferline.setup({
   --       -- },
   --   },
   -- },
-  -- highlights = {
-  --   -- separator = {
-  --   --     fg = '#1E1E2E',
-  --   --     bg = '#1E1E2E',
-  --   -- },
-  --   -- separator_selected = {
-  --   --     fg = '#1E1E2E',
-  --   -- },
-  --   background = {
-  --     fg = '#656b93',
-  --     bg = '#1E1E2E'
-  --   },
-  --   buffer_selected = {
-  --     fg = '#d0d0ff',
-  --     bg = '#1E1E2E',
-  --     italic = true
-  --   },
-  --   fill = {
-  --     bg = '#11111B'
-  --     -- bg = '#15181E'
-  --   }
-  -- },
+  highlights = {
+    separator = {
+      fg = '#2e383c',
+      bg = '#2e383c',
+    },
+    separator_selected = {
+      fg = '#d3c6aa',
+      bg = '#2e383c',
+    },
+    separator_visible = {
+      fg = '#d3c6aa',
+      bg = '#2e383c',
+    },
+    background = {
+      fg = '#d3c6aa',
+      bg = '#2e383c'
+    },
+    buffer_selected = {
+      fg = '#d3c6aa',
+      bg = '#1e2326',
+      italic = true
+    },
+    fill = {
+      bg = '#374145'
+      -- bg = '#15181E'
+    },
+    modified = {
+      bg = '#374145'
+    },
+    modified_visible = {
+      bg = '#374145'
+    },
+    modified_selected = {
+      bg = '#374145'
+    },
+    tab = {
+      bg = '#374145'
+    },
+    tab_selected = {
+      bg = '#374145'
+    },
+    tab_close = {
+      bg = '#374145'
+    },
+    close_button = {
+      bg = '#374145'
+    },
+    close_button_visible = {
+      bg = '#374145'
+    },
+    close_button_selected = {
+      bg = '#374145'
+    },
+    indicator_selected = {
+      bg = '#374145'
+    },
+    pick_selected = {
+      bg = '#374145',
+      bold = true,
+      italic = true,
+    },
+    pick_visible = {
+      bg = '#374145',
+      bold = true,
+      italic = true,
+    },
+    pick = {
+      bg = '#374145',
+      bold = true,
+      italic = true,
+    },
+  },
 })
 
 -- vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})

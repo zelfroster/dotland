@@ -26,11 +26,10 @@ packer.startup(function(use)
 
   -- ColorScheme --
   use({
-    'catppuccin/nvim',
-    as = 'catppuccin',
+    "neanias/everforest-nvim",
     config = function()
-      vim.cmd.colorscheme 'catppuccin'
-    end
+      require("everforest").setup()
+    end,
   })
 
   -- Transparent --

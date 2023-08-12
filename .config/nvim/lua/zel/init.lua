@@ -8,10 +8,11 @@ require("nvim-surround").setup()
 -- Keep system and nvim clipboard (copy and paste) in sync
 vim.opt.clipboard:append { 'unnamedplus' }
 
--- Set vimwiki folder and set njk to html
+-- Set vimwiki folder, treat njk as html, open help in vertical split
 vim.cmd [[
-  let g:vimwiki_list = [{'path': '~/dox/vimwiki/'}]
+  let g:vimwiki_list = [{'path': '~/dox/vimwiki/', 'syntax': 'markdown'}]
   au BufNewFile,BufRead *.njk set filetype=html
+  autocmd! BufEnter * if &ft ==# 'help' | wincmd L | endif
 ]]
 
 -- If buffer deleted then close NvimTree

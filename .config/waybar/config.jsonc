@@ -1,24 +1,25 @@
 {
   "layer": "top",
   "modules-left": [
-    "custom/launcher",
     "wlr/workspaces",
-    "custom/wallpaper",
-    "tray"
-  ],
-  "modules-center": ["custom/media", "custom/cava", "cava"],
-  "modules-right": [
+    // "custom/wallpaper",
     "cpu",
     "memory",
+    "tray",
+    "custom/window"
+  ],
+  "modules-center": ["custom/media"],
+  "modules-right": [
+    "custom/updates",
     "network",
     "pulseaudio",
     "clock",
-    "custom/power"
+    "custom/clock"
   ],
 
   "wlr/workspaces": {
     "active-only": false,
-    "on-click": "activate",
+    // "on-click": "activate",
     "persistent_workspaces": {
       "1": "",
       "2": "",
@@ -29,6 +30,12 @@
     },
     "format": "{icon}",
     "format-icons": {
+      // "1": "",
+      // "2": "",
+      // "3": "",
+      // "4": "",
+      // "5": "",
+      // "6": "",
       "active": "",
       "default": ""
       // "default": "  "
@@ -37,7 +44,9 @@
     "on-scroll-down": "hyprctl dispatch workspace e-1"
   },
   "hyprland/window": {
-    "format": "{}"
+    "format": "{}",
+    "max-length": 100,
+    "separate-outputs": true
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
@@ -51,6 +60,7 @@
   },
 
   "pulseaudio": {
+    "tooltip": false,
     "scroll-step": 5,
     "format": "{icon}  {volume}%",
     "format-muted": "  {volume}%",
@@ -65,7 +75,11 @@
     "spacing": 10
   },
   "custom/cava": {
-    "exec": "sleep 1 && cava -p $XDG_CONFIG_HOME/cava/waybar_cava.conf | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'"
+    "restart-interval": 10,
+    "tooltip": false,
+    "exec": "pactl list sinks | grep -q RUNNING && cava -p $XDG_CONFIG_HOME/cava/waybar_cava.conf | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'",
+    "exec-if": "pactl list sinks | grep -q RUNNING",
+    "on-click-right": "pkill cava"
   },
   "cava": {
     "cava_config": "$XDG_CONFIG_HOME/cava/config",
@@ -92,25 +106,33 @@
   "clock": {
     "timezone": "Asia/Kolkata",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "  {:%H:%M}",
-    "format-alt": "󰃮  {:%d/%m/%Y}"
+    "format": "󰃮  {:%a %d/%m/%Y}"
+    // "format-alt": "󰃮  {:%d/%m/%Y}"
+  },
+  "custom/clock": {
+    "interval": 5,
+    "tooltip": false,
+    "format": "  {}",
+    "exec": "date +%R"
+    // "format-alt": "󰃮  {:%d/%m/%Y}"
   },
   "cpu": {
-    "interval": 15,
-    "format": "  {}%",
-    "max-length": 10
+    "interval": 5,
+    "format": "  {usage}%"
   },
   "memory": {
-    "interval": 30,
+    "interval": 15,
     "format": "  {}%",
     "max-length": 10
   },
   "custom/window": {
-    "format": "<b>{}</b>",
+    "tooltip": false,
+    "format": "{}",
     "interval": 1,
     "exec": "hyprctl activewindow | grep class | awk '{print $2}'"
   },
   "custom/media": {
+    "tooltip": false,
     "format": "{icon}  {}",
     "return-type": "json",
     "max-length": 30,
@@ -133,23 +155,28 @@
     "on-scroll-down": "playerctl previous"
   },
   "custom/launcher": {
-    "format": "",
-    "on-click": "pkill wofi; wofi --show drun --allow-images",
-    "on-click-right": "killall wofi"
+    "tooltip": false,
+    "format": ""
+    // "on-click": "pkill wofi; wofi -S drun -iI -w2 -W750 -p '>>>'",
+    // "on-click-right": "killall wofi"
   },
   "custom/power": {
+    "tooltip": false,
     "format": "",
-    "on-click": "wlogout"
+    "on-click": "wofi-poweroff"
     // "on-click": "bash ~/.config/rofi/leave/leave.sh"
   },
   "custom/updates": {
-    "format": "{} Update(s)",
-    "exec": "checkupdates | wc -l",
+    "return-type": "json",
+    "format": "  {}",
+    "tooltip-format": "{tooltip}",
+    "exec": "checkupdates.sh 2> /dev/null",
     "exec-if": "[[ $(checkupdates | wc -l) != 0 ]]",
-    "interval": 15,
-    "on-click": "alacritty -e paru -Syu && notify-send 'The system has been updated' "
+    "interval": 60,
+    "on-click": "foot -e yay -Syu && notify-send 'The system has been updated' "
   },
   "custom/wallpaper": {
+    "tooltip": false,
     "format": " ",
     "on-click": "bash set-wall"
   }
