@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+choice=$(printf " Power Off\n Restart" | wofi -di -H126 -W300 -p ">>>")
+
+case "$choice" in
+  " Power Off") poweroff ;;
+  " Restart") reboot ;;
+  *) exit 1 ;;
+esac

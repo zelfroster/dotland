@@ -61,7 +61,7 @@ k.set("i", "<C-c>", "<Esc>")
 
 k.set("n", "Q", "<nop>")                   -- don't know what it does
 
-k.set("n", "<C-f>", ":Neotree toggle<CR>") -- Toggle NeoTree
+k.set("n", "<C-f>", ":NvimTreeToggle<CR>") -- Toggle NvimTree
 
 k.set("n", "<leader>f", function()
   vim.lsp.buf.format() -- format using default lsp
@@ -79,16 +79,13 @@ k.set("n", "<leader>r", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 k.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Leader-tp to toggle transparency ( requires nvim-transparent )
--- k.set("n", "<leader>tp", "<cmd>TransparentToggle<CR>", { silent = true })
+k.set("n", "<leader>tp", "<cmd>TransparentToggle<CR>", { silent = true })
 
 -- A fun thing to do
--- k.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>", { silent = true })
+k.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>", { silent = true })
 
 -- Compile and Run C Program
 k.set('', '<F9>', ':!g++ -o %< % && ./%< <CR>')
-
--- Toggle UndoTree
-k.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- Swap TAB keymap to buffers if using buffers instead of TABs
 -- k.set("n", "gt", ":bnext<CR>")

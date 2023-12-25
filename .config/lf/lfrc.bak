@@ -47,7 +47,7 @@ cmd setwall ${{
 }}
 
 cmd setpywall ${{
-    set-pywall "$f"
+    set_wallpaper "$f"
 }}
 
 # Bindings
@@ -74,7 +74,6 @@ map mf mkfile
 map md mkdir
 map C clear
 map w setwall
-map W setpywall
 
 # Movement
 map gD cd ~/dox

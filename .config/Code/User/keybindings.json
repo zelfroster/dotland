@@ -1,0 +1,101 @@
+// Place your key bindings in this file to override the defaults
+[
+//   {
+//     "command": "expand_region",
+//     "key": "ctrl+=",
+//     "when": "editorTextFocus"
+//   },
+//   {
+//     "command": "undo_expand_region",
+//     "key": "ctrl+-",
+//     "when": "editorTextFocus && editorHasSelection"
+//   },
+  {
+    "command": "workbench.action.toggleSidebarVisibility",
+    "key": "ctrl+f"
+  },
+  {
+    "command": "workbench.files.action.focusFilesExplorer",
+    "key": "ctrl+f",
+    "when": "editorTextFocus"
+  },
+  {
+    "command": "explorer.newFile",
+    "key": "a",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "command": "renameFile",
+    "key": "r",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "command": "filesExplorer.copy",
+    "key": "y",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "command": "filesExplorer.paste",
+    "key": "p",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "command": "deleteFile",
+    "key": "d",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  // {
+  //   "command": "editor.action.addSelectionToNextFindMatch",
+  //   "key": "ctrl+n",
+  //   "when": "editorFocus"
+  // },
+  // {
+  //   "command": "editor.action.addSelectionToNextFindMatch",
+  //   "key": "ctrl+n",
+  //   "when": "editorFocus"
+  // },
+  {
+    "command": "workbench.action.toggleZenMode",
+    "key": "cmd+z"
+  },
+  {
+    "command": "-workbench.action.toggleZenMode",
+    "key": "cmd+k z"
+  },
+  {
+    "command": "-editor.action.selectAll",
+    "key": "cmd+a"
+  },
+  {
+    "command": "editor.action.selectAll",
+    "key": "cmd+a"
+  },
+  {
+    "key": "f9",
+    "command": "code-runner.run"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "-code-runner.run"
+  },
+  {
+    "key": "ctrl+down",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+up",
+    "command": "editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+alt+up",
+    "command": "-editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+]

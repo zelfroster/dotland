@@ -113,7 +113,9 @@ def main():
     signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
     for player in manager.props.player_names:
-        if arguments.player is not None and arguments.player != player.name:
+        if arguments.player is not None and \
+                arguments.player != player.name and \
+                Playerctl.Player.new_from_name(player).props.player_name != "spotify":
             logger.debug('{player} is not the filtered player, skipping it'
                          .format(player=player.name)
                          )

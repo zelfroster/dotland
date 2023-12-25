@@ -88,6 +88,10 @@ button:hover {
   /* box-shadow: 0px 1px 2px 0px #000000; */
 }
 
+#bluetooth {
+  color: @flamingo;
+}
+
 #network {
   color: @purple;
 }
@@ -101,7 +105,7 @@ button:hover {
 }
 
 #custom-clock {
-  padding: 0px 12px 0px 8px;
+  padding: 0px 12px 0px 6px;
   color: @flamingo;
 }
 
