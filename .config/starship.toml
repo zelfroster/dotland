@@ -19,16 +19,17 @@ format = "$all"
 # style_user = "purple bold"
 style_user = "blue bold"
 style_root = "red bold"
-format = "\\[[$user]($style)@"
+# format = "\\[[$user]($style)@"
+format = ""
 disabled = false
 show_always = true
 
 [hostname]
 ssh_only = false
 # format = "[$hostname](bold cyan)\\] in "
-format = "[$hostname](cyan bold)\\] in "
+# format = "[$hostname](cyan bold)\\] in "
 # format = "[$hostname](bold purple)\\] on   in "
-# format = "  in "
+format = "  in "
 trim_at = "."
 disabled = false
 

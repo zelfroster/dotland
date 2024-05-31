@@ -14,7 +14,7 @@ return {
 		end
 
 		neotree.setup({
-			close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+			close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 			popup_border_style = "rounded",
 			enable_git_status = true,
 			enable_diagnostics = true,
@@ -115,21 +115,25 @@ return {
 				mappings = {
 					["<space>"] = {
 						"toggle_node",
-						nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+						nowait = true, -- disable `nowait` if you have existing combos starting with this char that you want to use
 					},
 					["<2-LeftMouse>"] = "open",
-					["<cr>"] = "open",
+					["<cr>"] = "open_tab_drop",
 					["<esc>"] = "cancel", -- close preview or floating neo-tree window
-					["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
+					["P"] = {
+						"toggle_preview",
+						config = { use_float = true, use_image_nvim = true },
+					},
 					-- Read `# Preview Mode` for more information
 					["l"] = "focus_preview",
 					["S"] = "open_split",
 					["s"] = "open_vsplit",
 					-- ["S"] = "split_with_window_picker",
 					-- ["s"] = "vsplit_with_window_picker",
-					["t"] = "open_tabnew",
+					-- ["t"] = "open_tabnew",
 					-- ["<cr>"] = "open_drop",
 					-- ["t"] = "open_tab_drop",
+					["e"] = "open",
 					["w"] = "open_with_window_picker",
 					--["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
 					["C"] = "close_node",
@@ -170,11 +174,11 @@ return {
 			filesystem = {
 				filtered_items = {
 					visible = false, -- when true, they will just be displayed differently than normal items
-					hide_dotfiles = true,
-					hide_gitignored = true,
+					hide_dotfiles = false,
+					hide_gitignored = false,
 					hide_hidden = true, -- only works on Windows for hidden files/directories
 					hide_by_name = {
-						--"node_modules"
+						"node_modules",
 					},
 					hide_by_pattern = { -- uses glob style patterns
 						--"*.meta",
@@ -192,7 +196,7 @@ return {
 					},
 				},
 				follow_current_file = {
-					enabled = false, -- This will find and focus the file in the active buffer every time
+					enabled = true, -- This will find and focus the file in the active buffer every time
 					--               -- the current file is changed while the tree is open.
 					leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
 				},
@@ -207,6 +211,7 @@ return {
 				window = {
 					mappings = {
 						["<bs>"] = "navigate_up",
+						["h"] = "navigate_up",
 						["."] = "set_root",
 						["H"] = "toggle_hidden",
 						["/"] = "fuzzy_finder",
@@ -217,7 +222,11 @@ return {
 						["<c-x>"] = "clear_filter",
 						["[g"] = "prev_git_modified",
 						["]g"] = "next_git_modified",
-						["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+						["o"] = {
+							"show_help",
+							nowait = false,
+							config = { title = "Order by", prefix_key = "o" },
+						},
 						["oc"] = { "order_by_created", nowait = false },
 						["od"] = { "order_by_diagnostics", nowait = false },
 						["og"] = { "order_by_git_status", nowait = false },
@@ -249,7 +258,11 @@ return {
 						["bd"] = "buffer_delete",
 						["<bs>"] = "navigate_up",
 						["."] = "set_root",
-						["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+						["o"] = {
+							"show_help",
+							nowait = false,
+							config = { title = "Order by", prefix_key = "o" },
+						},
 						["oc"] = { "order_by_created", nowait = false },
 						["od"] = { "order_by_diagnostics", nowait = false },
 						["om"] = { "order_by_modified", nowait = false },
@@ -270,7 +283,11 @@ return {
 						["gc"] = "git_commit",
 						["gp"] = "git_push",
 						["gg"] = "git_commit_and_push",
-						["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+						["o"] = {
+							"show_help",
+							nowait = false,
+							config = { title = "Order by", prefix_key = "o" },
+						},
 						["oc"] = { "order_by_created", nowait = false },
 						["od"] = { "order_by_diagnostics", nowait = false },
 						["om"] = { "order_by_modified", nowait = false },

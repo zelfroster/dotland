@@ -1,0 +1,69 @@
+# change prefix
+unbind C-b
+set -g prefix C-space
+
+# split panes using | and -
+unbind '"'
+unbind %
+bind | split-window -h
+bind - split-window -v
+
+# reload config file (change file location to your the tmux.conf you want to use)
+bind r source-file ~/.config/tmux/tmux.conf
+
+# switch panes using Alt-arrow without prefix
+bind h select-pane -L
+bind l select-pane -R
+bind k select-pane -U
+bind j select-pane -D
+
+# don't rename windows automatically
+set-option -g allow-rename off
+
+# NOTE: you can use vars with $<var> and ${<var>} as long as the str is double quoted: ""
+# WARNING: hex colors can't contain capital letters
+
+# --> Catppuccin (Mocha)
+# tm_bg="#11111b"
+# tm_bg="#1e2326"
+# tm_bg_alt="#272e33"
+# tm_fg="#d3c6aa"
+# tm_fg_norm="#d3c6aa"
+# tm_aqua="#83c092"
+# tm_black="#1e2326"
+# tm_gray="#313244"
+# tm_purple="#d699b6"
+# tm_red="#e67e80"
+# tm_orange="#e69875"
+# tm_green="#a7c080"
+# tm_yellow="#dbbc7f"
+# tm_blue="#7fbbb3"
+# tm_lightgray="#9da9a0"
+
+tm_bg="#000000"
+tm_bg_alt="#000000"
+tm_fg="#ffffff"
+tm_fg_norm="#ffffff"
+tm_aqua="#83c092"
+tm_black="#1e2326"
+tm_gray="#444444"
+tm_purple="#d699b6"
+tm_red="#e67e80"
+tm_orange="#e69875"
+tm_green="#eeeeee"
+tm_yellow="#dbbc7f"
+tm_blue="#aaaaaa"
+tm_lightgray="#888888"
+
+set -g status-position bottom
+set -g status-bg $tm_bg
+set -g status-fg $tm_fg
+set -g status-left "#[fg=$tm_bg,bg=$tm_green]  #[fg=$tm_green,bg=$tm_blue]#[fg=$tm_bg,bg=$tm_blue,bold] #S #[fg=$tm_blue,bg=$tm_bg]"
+set -g status-right "#[fg=$tm_green,bg=$tm_bg]#[fg=$tm_bg,bg=$tm_green,bold] #{user}-#{host} "
+set -g status-right-length 50
+set -g status-left-length 30
+
+set -g window-status-current-format " #I#[fg=$tm_fg]:#[fg=$tm_fg_norm]#W#[fg=colour256]#F "
+set -g window-status-format " #I#[fg=$tm_fg]:#[fg=$tm_lightgray]#W#[fg=$tm_gray]#F "
+set-option -g  default-terminal "foot"
+set-option -ga terminal-overrides ",foot:Tc"

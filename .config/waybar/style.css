@@ -10,22 +10,17 @@
 }
 
 window#waybar {
-  margin: 0px 10px;
+  margin: 20px 10px;
   background-color: alpha(@bg, 1);
   transition-property: background-color;
   transition-duration: 0.5s;
   padding: 4px;
+  /* border-bottom: 1px solid @fg; */
+  box-shadow: 14px 14px 18px 16px #000000;
 }
 
 window#waybar.hidden {
   opacity: 0.2;
-}
-#window {
-  margin-left: 8px;
-  padding: 4px 10px;
-  background: @bg;
-  color: @aqua;
-  border-radius: 8px;
 }
 
 button:hover {
@@ -34,12 +29,12 @@ button:hover {
 }
 
 #workspaces {
-  color: @blue;
   background: @bg;
-  border-radius: 8px;
+  color: @blue;
   margin-top: 2px;
   margin-bottom: 2px;
   padding: 0px 4px;
+  border-radius: 8px;
 }
 
 #workspaces button {
@@ -77,7 +72,9 @@ button:hover {
 #custom-media,
 #custom-cava,
 #custom-clock,
-#custom-window {
+#custom-window,
+#bluetooth,
+#window {
   transition: none;
   margin-left: 8px;
   margin-top: 2px;
@@ -88,8 +85,13 @@ button:hover {
   /* box-shadow: 0px 1px 2px 0px #000000; */
 }
 
+#window {
+  color: @aqua;
+}
+
 #bluetooth {
   color: @flamingo;
+  padding-right: 4px;
 }
 
 #network {
@@ -126,13 +128,13 @@ button:hover {
 }
 
 #custom-launcher {
-  margin-left: 10px;
-  margin-right: 8px;
+  margin-left: 4px;
+  margin-right: 2px;
   color: @blue;
 }
 
 #custom-power {
-  margin-right: 2px;
+  margin-right: 4px;
   padding: 0px 12px 0px 8px;
   color: @red;
 }
@@ -151,6 +153,7 @@ button:hover {
 #custom-media {
   color: @aqua;
 }
+
 #custom-updates {
   color: @flamingo;
 }
@@ -160,5 +163,9 @@ button:hover {
 }
 
 #tooltip {
+  background: red;
+}
+
+#hyprland-window {
   background: red;
 }

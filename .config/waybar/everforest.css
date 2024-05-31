@@ -5,21 +5,46 @@
 *
 */
 
-@define-color bg   #1e2326;
-@define-color bg0   #272e33;
-@define-color bg0   #2e383c;
+/* @define-color bg   #1e2326; */
+@define-color bg   #282828;
+/* @define-color bg0   #272e33; */
+/* @define-color bg0   #2e383c; */
 
-@define-color fg     #d3c6aa;
+@define-color fg     #ddc7a1;
+/* @define-color fg     #d3c6aa; */
 
-@define-color gray0 #7a8478;
-@define-color gray1 #859289;
-@define-color gray2 #9da9a0;
+@define-color gray0 #777777;
+@define-color gray1 #888888;
+@define-color gray2 #999999;
 
-@define-color blue      #7fbbb3;
-@define-color aqua      #83c092;
-@define-color green     #a7c080;
-@define-color yellow    #dbbc7f;
-@define-color orange    #e69875;
-@define-color red       #e67e80;
-@define-color purple    #d699b6;
-@define-color flamingo  #f2cdcd;
+/* @define-color gray0 #7a8478; */
+/* @define-color gray1 #859289; */
+/* @define-color gray2 #9da9a0; */
+
+@define-color blue      #ddc7a1;
+@define-color aqua      #ddc7a1;
+@define-color green     #ddc7a1;
+@define-color yellow    #ddc7a1;
+@define-color orange    #ddc7a1;
+@define-color red       #ddc7a1;
+@define-color purple    #ddc7a1;
+@define-color flamingo  #ddc7a1;
+
+/* gruvbox */
+/* @define-color blue      #7daea3; */
+/* @define-color aqua      #89b482; */
+/* @define-color green     #a9b665; */
+/* @define-color yellow    #d8a657; */
+/* @define-color orange    #e78a4e; */
+/* @define-color red       #ea6962; */
+/* @define-color purple    #d3869b; */
+/* @define-color flamingo  #ffffff; */
+
+/* @define-color blue      #7fbbb3; */
+/* @define-color aqua      #83c092; */
+/* @define-color green     #a7c080; */
+/* @define-color yellow    #dbbc7f; */
+/* @define-color orange    #e69875; */
+/* @define-color red       #e67e80; */
+/* @define-color purple    #d699b6; */
+/* @define-color flamingo  #f2cdcd; */

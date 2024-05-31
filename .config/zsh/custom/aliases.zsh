@@ -1,3 +1,4 @@
+alias lf="lfrun"
 alias ls="lsd --color=auto"
 alias lsg="lsd --color=auto --group-directories-first"
 alias ll="lsd -al --color=auto"

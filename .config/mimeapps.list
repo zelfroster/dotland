@@ -1,0 +1,12 @@
+[Added Associations]
+image/png=org.xfce.ristretto.desktop;
+video/x-matroska=vlc.desktop;
+image/webp=brave-browser.desktop;
+image/tiff=org.xfce.ristretto.desktop;
+video/webm=vlc.desktop;
+video/mp4=vlc.desktop;
+image/jpeg=org.xfce.ristretto.desktop;
+text/plain=vscodium-wayland.desktop;
+
+[Default Applications]
+x-scheme-handler/postman=Postman.desktop

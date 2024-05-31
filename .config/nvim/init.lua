@@ -1,1 +1,2 @@
-require("zel")
+require("zel.core")
+require("zel.lazy")

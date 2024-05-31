@@ -166,6 +166,8 @@ ex=:\
 *.xspf=:\
 *.pdf=:\
 *.nix=:\
+*.sqlite=:\
+*.sqlite3=:\
 "
 
 

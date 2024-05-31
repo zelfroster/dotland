@@ -1,0 +1,171 @@
+@import "everforest.css";
+
+* {
+  border: none;
+  font-family: "JetbrainsMono Nerd Font";
+  font-size: 16px;
+  border-radius: 0px;
+  margin: 0;
+  padding: 0;
+}
+
+window#waybar {
+  margin: 0px 10px;
+  background-color: alpha(@bg, 1);
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  padding: 4px;
+  border-bottom: 1px solid @fg;
+  box-shadow: 14px 14px 18px 16px #000000;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+button:hover {
+  background: inherit;
+  box-shadow: none;
+}
+
+#workspaces {
+  background: @bg;
+  color: @blue;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 0px 4px;
+  border-radius: 8px;
+}
+
+#workspaces button {
+  transition: none;
+  color: @gray0;
+  padding-left: 6px;
+  padding-right: 10px;
+  border-radius: 8px;
+}
+
+#workspaces button.active {
+  color: @blue;
+  border-radius: 8px;
+}
+
+#workspaces button:hover {
+  color: @blue;
+  border-radius: 8px;
+  box-shadow: none;
+  font-weight: normal;
+}
+
+#network,
+#pulseaudio,
+#clock,
+#memory,
+#cpu,
+#tray,
+#cava,
+#custom-launcher,
+#custom-power,
+#custom-wallpaper,
+#custom-updates,
+#custom-spotify,
+#custom-media,
+#custom-cava,
+#custom-clock,
+#custom-window,
+#bluetooth,
+#window {
+  transition: none;
+  margin-left: 8px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: @bg;
+  /* box-shadow: 0px 1px 2px 0px #000000; */
+}
+
+#window {
+  color: @aqua;
+}
+
+#bluetooth {
+  color: @flamingo;
+  padding-right: 4px;
+}
+
+#network {
+  color: @purple;
+}
+
+#pulseaudio {
+  color: @yellow;
+}
+
+#clock {
+  color: @blue;
+}
+
+#custom-clock {
+  padding: 0px 12px 0px 6px;
+  color: @flamingo;
+}
+
+#memory {
+  color: @orange;
+}
+
+#cpu {
+  color: @green;
+}
+
+#custom-cava {
+  color: @green;
+}
+
+#tray {
+  color: @fg;
+}
+
+#custom-launcher {
+  margin-left: 4px;
+  margin-right: 2px;
+  color: @blue;
+}
+
+#custom-power {
+  margin-right: 4px;
+  padding: 0px 12px 0px 8px;
+  color: @red;
+}
+
+#custom-window {
+  color: @aqua;
+}
+
+#custom-wallpaper {
+  padding-right: 6px;
+  padding-left: 10px;
+  color: @flamingo;
+}
+
+#custom-spotify,
+#custom-media {
+  color: @aqua;
+}
+
+#custom-updates {
+  color: @flamingo;
+}
+
+#network.disconnected {
+  color: @red;
+}
+
+#tooltip {
+  background: red;
+}
+
+#hyprland-window {
+  background: red;
+}
