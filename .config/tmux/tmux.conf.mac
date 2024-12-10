@@ -1,0 +1,84 @@
+# change prefix
+unbind C-b
+set -g prefix C-space
+
+# split panes using | and -
+unbind '"'
+unbind %
+bind | split-window -h
+bind - split-window -v
+
+# reload config file (change file location to your the tmux.conf you want to use)
+bind r source-file ~/.config/tmux/tmux.conf
+
+# switch panes using Alt-arrow without prefix
+bind h select-pane -L
+bind l select-pane -R
+bind k select-pane -U
+bind j select-pane -D
+
+# don't rename windows automatically
+set-option -g allow-rename off
+
+# NOTE: you can use vars with $<var> and ${<var>} as long as the str is double quoted: ""
+# WARN: hex colors can't contain capital letters
+
+# rose-pine
+# tm_bg="#000000"
+# tm_bg_alt="#2a273f"
+
+tm_bg_alt="#282828"
+tm_fg="#A89984"
+tm_fg_norm="#A89984"
+tm_aqua="#83c092"
+tm_gray="#887964"
+
+# tm_black="#1e2326"
+# tm_gray="#444444"
+# tm_purple="#d699b6"
+# tm_red="#e67e80"
+# tm_orange="#e69875"
+# tm_green="#a7c080"
+# tm_yellow="#dbbc7f"
+# tm_blue="#9898a8"
+# tm_lightgray="#686878"
+# tm_rose="#ea9a97"
+
+# --- catppuccin light --- #
+# tm_bg_alt="#E5E9F0"
+# tm_fg="#2E3440"
+# tm_fg_norm="#0969DA"
+# tm_aqua="#83c092"
+# tm_black="#1e2326"
+# tm_gray="#7E8490"
+# tm_blue="#9898a8"
+# ------------------------ #
+
+set -g status-position top
+set -g status-bg $tm_bg_alt
+set -g status-fg $tm_fg
+# set -g status-left "#[fg=$tm_bg,bg=$tm_green]  #[fg=$tm_green,bg=$tm_blue]#[fg=$tm_bg,bg=$tm_blue,bold] #S #[fg=$tm_blue,bg=$tm_bg]"
+# set -g status-left "#[fg=$tm_bg_alt,bg=$tm_fg_norm ,bold] #S #[fg=$tm_fg_norm ,bg=$tm_bg_alt]"
+# set -g status-right "#[fg=$tm_fg_norm,bg=$tm_bg_alt]#[fg=$tm_bg_alt,bg=$tm_fg_norm,bold] #{user}-#{host} "
+set -g status-left "#[fg=$tm_bg_alt,bg=$tm_fg_norm ,bold] #S #[fg=$tm_fg_norm ,bg=$tm_bg_alt]"
+set -g status-right "#[fg=$tm_fg_norm,bg=$tm_bg_alt]#[fg=$tm_bg_alt,bg=$tm_fg_norm,bold] #{user}-#{host} "
+set -g status-right-length 50
+set -g status-left-length 30
+# set -g default-terminal "screen-256color"
+
+set -g window-status-current-format " #I#[fg=$tm_fg]:#[fg=$tm_fg]#W#[fg=colour48]#F "
+set -g window-status-format " #I#[fg=$tm_lightgray]:#[fg=$tm_gray]#W#[fg=$tm_gray]#F "
+set -g default-terminal "screen-256color"
+# set-option -g  default-terminal "foot"
+# set-option -ga terminal-overrides ",foot:Tc"
+set-option -g history-limit 5000
+
+set -g mouse on
+
+# transparent status bar bg
+set-option -g status-style bg=default
+
+# undercurl
+set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+
