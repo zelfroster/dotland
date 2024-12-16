@@ -1,0 +1,282 @@
+{
+  // Defaults
+  "editor.cursorBlinking": "solid",
+  "editor.cursorStyle": "block-outline",
+  "window.menuBarVisibility": "toggle",
+  "workbench.sideBar.location": "right",
+  "update.showReleaseNotes": false,
+  "workbench.startupEditor": "none",
+  "telemetry.telemetryLevel": "off",
+
+  "editor.mouseWheelZoom": true,
+
+  // Font
+  // "editor.fontFamily": "GoMono Nerd Font, JetBrainsMono Nerd Font, Liberation Mono, NotoMono NF, monospace",
+  "editor.fontFamily": "DejaVuSansM Nerd Font, JetBrainsMono Nerd Font, Liberation Mono, NotoMono NF, monospace",
+  "editor.fontLigatures": true,
+  "editor.fontWeight": "300",
+  "editor.fontSize": 14,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          //following will be in italic (=FlottFlott)
+          "comment",
+          "entity.name.type.class", //class names
+          "keyword", //import, export, return…
+          "constant", //String, Number, Boolean…, this, super
+          "storage.modifier", //static keyword
+          "storage.type.class.js" //class keyword
+        ],
+        "settings": {
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": [
+          //following will be excluded from italics (VSCode has some defaults for italics)
+          "invalid",
+          "keyword.operator",
+          "constant.numeric.css",
+          "keyword.other.unit.px.css",
+          "constant.numeric.decimal.js",
+          "constant.numeric.json"
+        ],
+        "settings": {
+          "fontStyle": ""
+        }
+      }
+    ]
+  },
+
+  // Editor
+  "editor.indentSize": "tabSize",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true,
+  "editor.cursorSurroundingLines": 8,
+  "editor.inlineSuggest.enabled": true,
+  "editor.lineNumbers": "relative",
+  "editor.linkedEditing": true,
+  "editor.suggest.insertMode": "replace",
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  // Vim
+  "vim.useSystemClipboard": true,
+  "vim.foldfix": true,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "rgba(230, 230, 250, 0.25)",
+  "vim.hlsearch": false,
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["leader", "s", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["leader", "l", "g"],
+      "commands": ["workbench.view.search.focus"]
+    },
+    {
+      "before": ["leader", "r"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["leader", "w"],
+      "commands": [":w!"]
+    },
+    {
+      "before": ["leader", "q"],
+      "commands": [":q!"]
+    },
+    {
+      "before": ["leader", "x"],
+      "commands": [":x!"]
+    },
+    {
+      "after": ["g", "g", "V", "G"],
+      "before": ["<c-a>"]
+    },
+    {
+      "before": ["<leader>", "k"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<c-j>"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["<c-k>"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "after": ["^"],
+      "before": ["H"]
+    },
+    {
+      "after": ["$"],
+      "before": ["L"]
+    },
+    {
+      "before": ["leader", "i"],
+      "commands": ["extension.toggleBool"]
+    },
+    {
+      "before": ["u"],
+      "after": [],
+      "commands": [
+        {
+          "command": "undo",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<C-r>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "redo",
+          "args": []
+        }
+      ]
+    }
+  ],
+
+  // Set Formatter
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.semanticHighlighting.enabled": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.semanticHighlighting.enabled": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.semanticHighlighting.enabled": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.semanticHighlighting.enabled": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[go]": {
+    "editor.semanticHighlighting.enabled": true
+  },
+  "gopls": {
+    "ui.semanticTokens": true,
+
+    // you can optionally turn on these features for more colors
+    // see https://go.dev/issue/45753 and https://go.dev/issue/45792
+    "ui.noSemanticString": true, // delegates string syntax highlighting to vscode
+    "ui.noSemanticNumber": true // delegates number syntax highlighting to vscode
+  },
+  // "[python]": {
+  //   "editor.defaultFormatter": "ms-python.black-formatter",
+  //   "editor.formatOnSave": true,
+  //   "editor.codeActionsOnSave": {
+  //     "source.organizeImports": "always"
+  //   }
+  // },
+  // "python.languageServer": "Pylance",
+  "pylint.args": ["--django-settings-module=saleor.settings"],
+
+  // Add max line length of 80 - indent line
+  "editor.rulers": [80],
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#303030",
+    "editorCursor.foreground": "#d3c1aa",
+    "editorCursor.background": "#282828"
+  },
+
+  // Extensions
+  "extensions.autoUpdate": "onlyEnabledExtensions",
+  "extensions.ignoreRecommendations": false,
+
+  // Hide from File Menu
+  "files.exclude": {
+    "**/node_modules": true
+  },
+
+  // Prettier
+  //   "prettier.semi": false,
+  //   "prettier.singleAttributePerLine": true,
+  //   "prettier.singleQuote": true,
+  // "prettier.trailingComma": "all",
+  "gruvboxMaterial.colorfulSyntax": true,
+  "gruvboxMaterial.darkContrast": "medium",
+  "gruvboxMaterial.italicKeywords": true,
+  "gruvboxMaterial.darkWorkbench": "material",
+  "gruvboxMaterial.darkPalette": "material",
+  "gruvboxMaterial.highContrast": true,
+  // "everforest.darkContrast": "hard",
+  // "everforest.highContrast": false,
+  // "everforest.italicComments": true,
+  // "everforest.italicKeywords": true,
+  // "everforest.darkSelection": "grey",
+  // "everforest.darkWorkbench": "high-contrast",
+
+  // Misc
+  "git.suggestSmartCommit": true,
+  "errorLens.fontStyleItalic": true,
+  "explorer.confirmDelete": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.tabSize": 2,
+  "update.mode": "none",
+  "window.zoomLevel": 1,
+  "search.exclude": {
+    "env/*": true
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "window.titleBarStyle": "native",
+  "workbench.colorTheme": "Default Dark Modern",
+
+  "zenMode.hideLineNumbers": false,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "scm.experimental.showHistoryGraph": true,
+  "scm.defaultViewMode": "tree",
+  "colorize.languages": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "css",
+    "sass",
+    "scss",
+    "less",
+    "postcss",
+    "sss",
+    "stylus",
+    "xml",
+    "svg"
+  ],
+  "glassit.alpha": 220,
+  "cursor.cpp.disabledLanguages": ["go"],
+  "svelte.enable-ts-plugin": true,
+  "editor.formatOnSave": true
+}
