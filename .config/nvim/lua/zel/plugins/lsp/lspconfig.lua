@@ -2,8 +2,15 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
+		-- Automatically install LSPs and related tools to stdpath for Neovim
+		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+
 		"hrsh7th/cmp-nvim-lsp",
 		{ "folke/neodev.nvim", opts = {} },
+		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+		{ "j-hui/fidget.nvim", opts = {} },
 	},
 	config = function()
 		-- import lspconfig plugin
@@ -18,45 +25,51 @@ return {
 		local keymap = vim.keymap -- for conciseness
 
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+			group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
 			callback = function(ev)
 				-- Buffer local mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				local opts = { buffer = ev.buf, silent = true }
 
 				-- set keybinds
-				opts.desc = "Show LSP references"
+				opts.desc = "[G]oto [R]eferences"
 				keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
-				opts.desc = "Go to declaration"
+				opts.desc = "[G]oto [D]eclaration"
 				keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
-				opts.desc = "Show LSP definitions"
+				opts.desc = "[G]oto [D]efinition"
 				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
-				opts.desc = "Show LSP implementations"
+				opts.desc = "[G]oto [I]mplementation"
 				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
 
-				opts.desc = "Show LSP type definitions"
+				opts.desc = "[G]oto [T]ype Definition"
 				keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
-				opts.desc = "See available code actions"
+				opts.desc = "[C]ode [A]ction"
 				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
-				opts.desc = "Smart rename"
+				opts.desc = "Smart [R]e[N]ame"
 				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
-				opts.desc = "Show buffer diagnostics"
-				keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+				opts.desc = "Show buffer [D]iagnostics"
+				keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
-				opts.desc = "Show line diagnostics"
-				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+				-- opts.desc = "Show line [d]iagnostics"
+				-- keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
-				opts.desc = "Go to previous diagnostic"
-				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+				opts.desc = "[D]ocument [S]ymbols"
+				keymap.set("n", "<leader>Ds", "<cmd>Telescope lsp_document_symbols<CR>", opts) -- show diagnostics for line
 
-				opts.desc = "Go to next diagnostic"
-				keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+				opts.desc = "[W]orkspace [S]ymbols"
+				keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts) -- show diagnostics for line
+
+				-- opts.desc = "Go to previous diagnostic"
+				-- keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+				--
+				-- opts.desc = "Go to next diagnostic"
+				-- keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
 
 				opts.desc = "Show documentation for what is under cursor"
 				keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
@@ -68,86 +81,85 @@ return {
 
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-		-- Change the Diagnostic symbols in the sign column (gutter)
-		-- (not in youtube nvim video)
-		local signs = { Error = "✘ ", Warn = "▲ ", Hint = " ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+		local servers = {
+			-- clangd = {},
+			-- gopls = {},
+			-- pyright = {},
+			-- rust_analyzer = {},
+			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+			--
+			-- Some languages (like typescript) have entire language plugins that can be useful:
+			--    https://github.com/pmizio/typescript-tools.nvim
+			--
+			-- But for many setups, the LSP (`tsserver`) will work just fine
+			-- tsserver = {},
+			--
 
-		mason_lspconfig.setup_handlers({
-			-- default handler for installed servers
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["graphql"] = function()
-				-- configure graphql language server
-				lspconfig["graphql"].setup({
-					capabilities = capabilities,
-					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-				})
-			end,
-			["emmet_ls"] = function()
-				-- configure emmet language server
-				lspconfig["emmet_ls"].setup({
-					capabilities = capabilities,
-					filetypes = {
-						"html",
-						"typescriptreact",
-						"javascriptreact",
-						"css",
-						"sass",
-						"scss",
-						"less",
-						"svelte",
-					},
-				})
-			end,
-			["pylsp"] = function()
-				-- configure python language server
-				lspconfig["pylsp"].setup({
-					capabilities = capabilities,
-					filetypes = { "python" },
-					settings = {
-						pylsp = {
-							plugins = {
-								pycodestyle = {
-									ignore = { "E501", "W503" },
-									maxLineLength = 80,
-								},
+			gopls = {
+				filetypes = { "go" },
+			},
+			tailwindcss = {
+				filetypes = {
+					"html",
+					"javascript",
+					"typescript",
+					"typescriptreact",
+					"javascriptreact",
+					"svelte",
+				},
+			},
+			pylsp = {
+				settings = {
+					pylsp = {
+						plugins = {
+							pycodestyle = {
+								ignore = { "E501", "W503" },
+								maxLineLength = 80,
 							},
 						},
 					},
-				})
-			end,
-			["gopls"] = function()
-				-- configure python language server
-				lspconfig["gopls"].setup({
-					capabilities = capabilities,
-					filetypes = { "go" },
-				})
-			end,
-			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
+				},
+			},
+			lua_ls = {
+				-- cmd = {...},
+				-- filetypes = { ...},
+				-- capabilities = {},
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
 						},
+						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+						-- diagnostics = { disable = { 'missing-fields' } },
 					},
-				})
-			end,
+				},
+			},
+		}
+
+		require("mason").setup()
+
+		local ensure_installed = vim.tbl_keys(servers or {})
+		vim.list_extend(ensure_installed, {
+			"prettier", -- prettier formatter
+			"stylua", -- lua formatter
+			"pylint",
+			"eslint_d",
+		})
+		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+		mason_lspconfig.setup({
+			handlers = {
+				function(server_name)
+					local server = servers[server_name] or {}
+					-- This handles overriding only values explicitly passed
+					-- by the server configuration above. Useful when disabling
+					-- certain features of an LSP (for example, turning off formatting for tsserver)
+					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					require("lspconfig")[server_name].setup(server)
+				end,
+			},
 		})
 	end,
 }

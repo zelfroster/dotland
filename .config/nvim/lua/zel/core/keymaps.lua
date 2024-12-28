@@ -12,7 +12,7 @@ local opts = { noremap = true, silent = true }
 k.set("n", "<leader>sn", vim.cmd.Ex, { desc = "Open Netrw" })
 
 -- Clear search highlights
-k.set("n", "<leader>nh", ":nohl<CR>", { noremap = true, silent = true, desc = "Clear search highlights" })
+k.set("n", "<Esc>", ":nohl<CR>", { noremap = true, silent = true, desc = "Clear search highlights" })
 
 k.set("n", "<C-s>", ":w<CR>", { noremap = true, silent = true, desc = "Save File" })
 
@@ -69,13 +69,14 @@ k.set("n", "<leader>ck", "10<C-w>+")
 k.set("n", "<leader>cj", "10<C-w>-")
 
 -- Greatest remap ever
-k.set("n", "<leader>p", '"_dP')
+-- k.set("n", "<leader>p", '"_dP')
+k.set("n", "<leader>p", '"0p')
 
 -- next greatest remap ever : asbjornHaland
-k.set("n", "<leader>y", '"+y')
-k.set("v", "<leader>y", '"+y')
-k.set("n", "<leader>Y", '"+Y')
-
+-- k.set("n", "<leader>y", '"+y')
+-- k.set("v", "<leader>y", '"+y')
+-- k.set("n", "<leader>Y", '"+Y')
+--
 k.set("n", "<leader>d", '"_d')
 k.set("v", "<leader>d", '"_d')
 
@@ -85,12 +86,16 @@ k.set("i", "<C-c>", "<Esc>")
 k.set("n", "Q", "<nop>") -- don't know what it does
 
 k.set("n", "<C-f>", ":Neotree toggle<CR>", opts) -- Toggle NeoTree
+-- k.set("n", "<C-f>", ":Lex! 20<CR>", opts) -- Toggle NeoTree
 
 k.set("n", "<leader>f", function()
 	vim.lsp.buf.format() -- format using default lsp
 end)
 
 -- Diagnostics
+k.set("n", "<C-k>", function()
+	vim.diagnostic.goto_prev()
+end, opts)
 k.set("n", "<C-j>", function()
 	vim.diagnostic.goto_next()
 end, opts)
@@ -130,7 +135,7 @@ k.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 -- k.set("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
 
 -- lazy
-k.set("n", "<leader>l", ":Lazy<CR>", { desc = "Lazy" })
+k.set("n", "<leader>lz", ":Lazy<CR>", { desc = "Lazy" })
 
 -- telescope
 -- local builtin = require("telescope.builtin")
@@ -141,3 +146,6 @@ k.set("n", "<leader>l", ":Lazy<CR>", { desc = "Lazy" })
 -- k.set("<leader>tj", builtin.jumplist, { desc = "Telescope Jumplist" })
 -- k.set("<leader>/", builtin.current_buffer_fuzzy_find, { desc = "Fuzzy Find in current buffer" })
 -- k.set("<leader>gf", builtin.git_files, { desc = "Search Git Files" })
+
+-- Diagnostic keymaps
+k.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })

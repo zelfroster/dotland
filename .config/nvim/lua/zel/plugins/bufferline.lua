@@ -5,7 +5,7 @@ return {
 	opts = {
 		options = {
 			mode = "tabs",
-			separator_style = "thin",
+			-- separator_style = "thin",
 			diagnostics = false,
 			always_show_bufferline = true,
 			show_buffer_close_icons = false,
@@ -97,7 +97,8 @@ return {
 			-- 	bg = "#32302f",
 			-- },
 			separator = {
-				fg = "#282828",
+				fg = "#2E3440",
+				-- fg = "#282828",
 			},
 			-- separator_selected = {
 			--   fg = "#000000",

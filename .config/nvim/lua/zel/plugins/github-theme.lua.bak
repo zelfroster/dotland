@@ -1,0 +1,32 @@
+return {
+	"projekt0n/github-nvim-theme",
+	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	priority = 1000, -- make sure to load this before all the other start plugins
+	config = function()
+		-- local specs = {
+		-- 	all = {
+		-- 		syntax = {
+		-- 			variables = "magenta.bright",
+		-- 		},
+		-- 	},
+		-- }
+		require("github-theme").setup({
+			-- specs = specs,
+			options = {
+				transparent = true,
+				styles = {
+					comments = "italic",
+					keywords = "bold",
+					operators = "bold",
+					types = "italic,bold",
+					functions = "italic",
+				},
+				-- darken = {
+				-- 	floats = true,
+				-- },
+			},
+		})
+
+		-- vim.cmd.colorscheme("github_light")
+	end,
+}

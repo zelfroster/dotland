@@ -2,6 +2,13 @@ return {
 	"lewis6991/gitsigns.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	opts = {
+		signs = {
+			add = { text = "+" },
+			change = { text = "~" },
+			delete = { text = "_" },
+			topdelete = { text = "‾" },
+			changedelete = { text = "~" },
+		},
 		on_attach = function(bufnr)
 			local gs = package.loaded.gitsigns
 
@@ -10,8 +17,8 @@ return {
 			end
 
 			-- Navigation
-			map("n", "]h", gs.next_hunk, "Next Hunk")
-			map("n", "[h", gs.prev_hunk, "Prev Hunk")
+			map("n", "gh", gs.next_hunk, "Next Hunk")
+			map("n", "gl", gs.prev_hunk, "Prev Hunk")
 
 			-- Actions
 			map("n", "<leader>hs", gs.stage_hunk, "Stage hunk")
