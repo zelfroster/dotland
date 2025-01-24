@@ -1,7 +1,15 @@
 #! /bin/sh
 # Simple script that uses maim to take a screenshot
-output=$HOME/pix/ss/"$(date +%s_%h%d_%H:%M:%S).png"
+SCREENSHOT_DIR=$HOME/pix/ss
 
-grim $output
+# take screenshot
+grim $SCREENSHOT_DIR/"screenshot_$(date +%F_%T).png"
 
+# get latest modified file from ss dir
+screenshot_file_path="$(ls -t $SCREENSHOT_DIR | head -1)"
+
+# copy to clipboard
+wl-copy < $SCREENSHOT_DIR/$screenshot_file_path
+
+# send notification
 notify-send "Grim" "Screenshot Taken"

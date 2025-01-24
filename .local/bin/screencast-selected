@@ -1,0 +1,8 @@
+#! /bin/sh
+# Simple script that uses wf-recorder to capture screencast
+
+output=$HOME/vid/sc/"screencast_selected_$(date +%F_%T).mp4"
+
+wf-recorder -g "10,80 1900x989" -f $output
+
+notify-send "Grim" "Screencast Recorded"

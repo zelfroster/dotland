@@ -1,0 +1,7 @@
+#! /bin/sh
+# Simple script that uses maim to take a screenshot
+output=$HOME/vid/sc/"$(date +%s_%h%d_%H:%M:%S).mp4"
+
+wf-recorder -g "$(slurp)" -f $output
+
+notify-send "Grim" "Screencast Selected"
