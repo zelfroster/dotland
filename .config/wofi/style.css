@@ -1,46 +1,50 @@
 * {
   border: none;
   border-radius: 0px;
+  color: #ddc7a1;
 }
 window {
   font-size: 18px;
   font-family: JetBrains Mono Nerd Font;
-  background: #1e2326;
-  color: #7fbbb3;
+  background: #282828;
+  color: #ddc7a1;
   padding: 6px;
   margin: 6px;
+  /* border-radius: 8px; */
   border-radius: 0px;
-  border: 2px solid #a7c080;
+  /* border: 1px solid #93866a; */
+  border: 1px solid #bda781;
+  overflow: hidden;
 }
 
 #input {
   background: inherit;
   border: none;
   padding: 6px 10px;
-  color: #7fbbb3;
-  outline-color: red;
-  border-color: red;
-  border: 1px solid #a7c080;
-  border-bottom: 0px;
-  border-radius: 0px 0px 0 0;
+  color: #ddc7a1;
+  border: 0px solid #ffffff;
+  border-radius: 0;
+  /* border-radius: 8px 8px 0 0; */
 }
 
 #input:focus {
-  outline: 0px;
-  border: 1px solid #a7c080;
+  outline: 0px solid #ffffff;
+  border: 0px solid #ffffff;
   border-bottom: 0px;
-  caret-color: #a7c080;
+  caret-color: #ffffff;
 }
 
 #entry {
   padding: 6px 10px;
-  margin: 0 6px;
+  margin: 0 4px;
+  /* border-radius: 4px; */
+  border-radius: 0px;
 }
 
 #entry:selected {
-  background: #a7c080;
+  background: #ddc7a1;
 }
 
 #text:selected {
-  color: #1e2326;
+  color: #000000;
 }
