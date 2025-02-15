@@ -2,23 +2,24 @@
  * vim: ft=less
  */
 
-@define-color cc-bg rgba(0, 0, 0, 1);
+@define-color cc-bg rgba(229, 233, 240, 1);
 
 @define-color noti-border-color rgba(221, 199, 161, 0.15);
-@define-color noti-bg rgb(50, 48, 47);
+@define-color noti-bg rgb(129, 133, 140);
 @define-color noti-bg-darker rgb(38, 36, 35);
 @define-color noti-bg-hover rgb(56, 54, 53);
 @define-color noti-bg-focus rgba(68, 66, 65, 0.6);
 @define-color noti-close-bg rgba(221, 199, 161, 0.1);
 @define-color noti-close-bg-hover rgba(221, 199, 161, 0.15);
 
-@define-color text-color rgb(221, 199, 161);
+@define-color text-color rgb(46, 52, 64);
 @define-color text-color-disabled rgb(150, 150, 150);
 
 @define-color bg-selected rgb(0, 128, 255);
 
 * {
   font-family: "JetBrainsMono Nerd Font";
+  box-shadow: none;
 }
 
 .notification-row {
@@ -27,18 +28,20 @@
 
 .notification-row:focus,
 .notification-row:hover {
-  background: @noti-bg-focus;
+  background: #ffffff;
 }
 
 .notification {
   border-radius: 6px;
-  margin: 5px 10px;
+  margin-top: 1px;
+  /* margin: 2px 0px; */
   font-size: 12px;
-  /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
-    0 2px 6px 2px rgba(0, 0, 0, 0.3); */
+  /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7), */
+  /*   0 2px 6px 2px rgba(0, 0, 0, 0.3); */
   padding: 0;
-  background: #282828;
-  color: #ddc7a1;
+  background: #a5a9b0;
+  color: #ffffff;
+  box-shadow: none;
 }
 
 /* Uncomment to enable specific urgency colors
@@ -62,16 +65,18 @@
   */
 
 .notification-content {
-  background: #282828;
+  background: #ffffff;
+  margin: 0px;
   padding: 12px;
-  border: 1px solid #ddc7a1;
+  border: 1px solid #2E3440;
   border-radius: 0px;
   font-size: 10px;
+  box-shadow: none;
 }
 
 .close-button {
   background: transparent;
-  color: #ddc7a1;
+  color: #2E3440;
   text-shadow: none;
   padding: 0;
   border-radius: 0;
@@ -127,11 +132,11 @@
 
 /* add bottom border radius to eliminate clipping */
 .notification-action:first-child {
-  border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 0px;
 }
 
 .notification-action:last-child {
-  border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 0px;
   border-right: 1px solid @noti-border-color;
 }
 
@@ -200,6 +205,8 @@
 
 .control-center {
   background: @cc-bg;
+  border-left: 1px solid #2E3440;
+  border-radius: 0px;
 }
 
 .control-center-list {
@@ -212,12 +219,13 @@
 
 .floating-notifications {
   background: transparent;
+  box-shadow: none;
   font-size: 12px;
 }
 
 /* Window behind control center and on all other monitors */
 .blank-window {
-  background: alpha(black, 0.25);
+  background: alpha(#ffffff, 0.85);
 }
 
 /*** Widgets ***/
@@ -232,8 +240,8 @@
   font-size: initial;
   color: @text-color;
   text-shadow: none;
-  background: #282828;
-  border: 1px solid #ddc7a1;
+  background: #ffffff;
+  border: 1px solid #2E3440;
   box-shadow: none;
   border-radius: 0px;
 }
@@ -252,16 +260,16 @@
   font-size: initial;
   border-radius: 0px;
   background: @noti-bg;
-  border: 1px solid #ddc7a1;
+  border: 1px solid #2E3440;
   box-shadow: none;
 }
 
 .widget-dnd>switch:checked {
-  background: #ddc7a1;
+  background: #ffffff;
 }
 
 .widget-dnd>switch slider {
-  background: #222222;
+  background: @noti-bg;
   border-radius: 0px;
 }
 
