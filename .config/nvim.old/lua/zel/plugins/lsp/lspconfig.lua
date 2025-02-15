@@ -97,19 +97,6 @@ return {
 			-- tsserver = {},
 			--
 
-			emmet_ls = {
-				filetypes = {
-					"html",
-					"css",
-					"scss",
-					"less",
-					"javascript",
-					"javascriptreact",
-					"typescript",
-					"typescriptreact",
-					"vue",
-				},
-			},
 			gopls = {
 				filetypes = { "go" },
 			},

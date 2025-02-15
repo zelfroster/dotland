@@ -30,9 +30,9 @@ o.fileencoding = "utf-8" -- set encoding for normal files
 
 -- TAB and Indentation
 o.expandtab = true -- set tab to spaces
-o.tabstop = 4 -- number of spaces in a tab
-o.softtabstop = 4 -- number of spaces inserted when "TAB" key is pressed
-o.shiftwidth = 4 -- number of spaces used for autoindenting
+o.tabstop = 2 -- number of spaces in a tab
+o.softtabstop = 2 -- number of spaces inserted when "TAB" key is pressed
+o.shiftwidth = 2 -- number of spaces used for autoindenting
 o.smarttab = true -- insert space or tabs depending on context
 o.autoindent = true -- autoindent on
 o.smartindent = true -- adjust the indent autmatically according to syntax

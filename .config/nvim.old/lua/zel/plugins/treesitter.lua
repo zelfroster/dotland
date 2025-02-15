@@ -4,11 +4,11 @@ return {
 	-- build = ":TSUpdate",
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			-- indent = { enable = true },
-			-- autotag = { enable = true },
+			indent = { enable = true },
+			autotag = { enable = true },
 
 			-- A list of parser names, or "all" (the listed parsers MUST always be installed)
-			ensure_installed = "all",
+			ensure_installed = { "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "html" },
 
 			-- Install parsers synchronously (only applied to `ensure_installed`)
 			sync_install = false,
@@ -29,11 +29,6 @@ return {
 				enable = true,
 
 				-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-				-- FIXME:
-				-- WARN:
-				-- INFO:
-				-- BUG:
-				-- TODO:
 				-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
 				-- the name of the parser)
 				-- list of language that will be disabled
