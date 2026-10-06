@@ -15,8 +15,12 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "zel.plugins" }, { import = "zel.plugins.lsp"} }, {
+require("lazy").setup({ { import = "zel.plugins" }, { import = "zel.plugins.lsp" } }, {
+  git = {
+    url_format = "git@github.com:%s.git",
+  },
   change_detection = {
     notify = false,
-  }
+  },
+  rocks = { enabled = false },
 })

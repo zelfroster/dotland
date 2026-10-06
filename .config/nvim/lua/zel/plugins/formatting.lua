@@ -30,6 +30,7 @@ return {
 			lua = { "stylua" },
 			go = { "gofumpt", "golines" },
 			python = { "isort", "black" },
+			sql = { "sql-formatter", "sqlfmt" },
 		},
 		format_on_save = function(bufnr)
 			-- Disable "format_on_save lsp_fallback" for languages that don't

@@ -1,151 +1,99 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local k = vim.keymap
 local opts = { noremap = true, silent = true }
+local function o(desc)
+	return vim.tbl_extend("force", {}, opts, { desc = desc })
+end
 
--- Open Netrw
-k.set("n", "<leader>sn", vim.cmd.Ex, { desc = "Open Netrw" })
+k.set("n", "<Esc>", ":nohl<CR>", o("Clear search highlights"))
+k.set("n", "<C-s>", ":w<CR>", o("Save file"))
 
--- Clear search highlights
-k.set("n", "<Esc>", ":nohl<CR>", { noremap = true, silent = true, desc = "Clear search highlights" })
+-- Buffers
+k.set("n", "H", ":bprevious<CR>", o("Buffer previous"))
+k.set("n", "L", ":bnext<CR>", o("Buffer next"))
+k.set("n", "<leader>bd", ":bd<CR>", o("[B]uffer [D]elete"))
+k.set("n", "<leader>bn", ":bnext<CR>", o("[B]uffer [N]ext"))
+k.set("n", "<leader>bp", ":bprevious<CR>", o("[B]uffer [P]revious"))
 
-k.set("n", "<C-s>", ":w<CR>", { noremap = true, silent = true, desc = "Save File" })
+-- Tabs
+k.set("n", "te", ":tabe<Return>", o("New tab"))
 
--- buffer mappings
--- k.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", {})
--- k.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", {})maps
-k.set("n", "<leader>bd", ":bd<CR>", { desc = "Buffer delete" })
-k.set("n", "<leader>bn", ":bnext<CR>", { desc = "Buffer next" })
-k.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Buffer previous" })
-
--- tab mappings
-k.set("n", "L", "gt")
-k.set("n", "H", "gT")
-k.set("n", "gt", "gt")
-k.set("n", "gT", "gT")
-
--- Increment/Decrement
-k.set("n", "+", "<C-a>", { desc = "Increment number" })
-k.set("n", "-", "<C-x>", { desc = "Decrement number" })
+-- Increment / decrement
+k.set("n", "+", "<C-a>", o("Increment number"))
+k.set("n", "-", "<C-x>", o("Decrement number"))
 
 -- Select all
-k.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
+k.set("n", "<C-a>", "gg<S-v>G", o("Select all"))
 
--- New tab
-k.set("n", "te", ":tabe<Return>", { noremap = true, silent = true, desc = "New tab" })
+-- Visual line movement
+k.set("v", "J", ":m '>+1<CR>gv=gv", o("Move selection down"))
+k.set("v", "K", ":m '<-2<CR>gv=gv", o("Move selection up"))
 
--- Move selected text up and down
-k.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected text up" })
-k.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected text down" })
+-- Centered scrolling / search
+k.set("n", "<C-d>", "<C-d>zz", o("Scroll down (centered)"))
+k.set("n", "<C-u>", "<C-u>zz", o("Scroll up (centered)"))
+k.set("n", "n", "nzzzv", o("Next match (centered)"))
+k.set("n", "N", "Nzzzv", o("Prev match (centered)"))
 
--- Append the next Line to the current line
-k.set("n", "<leader>j", "mzJ`z")
+-- Splits
+k.set("n", "<leader>sv", ":vsplit<Return><C-w>w", o("Split vertically"))
+k.set("n", "<leader>sh", ":split<Return><C-w>w", o("Split horizontally"))
 
--- Movements with cursor always in center
-k.set("n", "<C-d>", "<C-d>zz")
-k.set("n", "<C-u>", "<C-u>zz")
-k.set("n", "n", "nzzzv")
-k.set("n", "N", "Nzzzv")
+-- Window navigation
+k.set("n", "<leader><Space>", "<C-w>w", o("Cycle windows"))
+k.set("n", "<leader>gh", "<C-w>h", o("Go to left window"))
+k.set("n", "<leader>gj", "<C-w>j", o("Go to down window"))
+k.set("n", "<leader>gk", "<C-w>k", o("Go to up window"))
+k.set("n", "<leader>gl", "<C-w>l", o("Go to right window"))
 
-k.set("n", "<leader>sv", ":vsplit<Return><C-w>w", opts)
-k.set("n", "<leader>ss", ":split<Return><C-w>w", opts)
+-- Resize windows
+k.set("n", "<leader>ch", "10<C-w><", o("Resize left"))
+k.set("n", "<leader>cl", "10<C-w>>", o("Resize right"))
+k.set("n", "<leader>ck", "10<C-w>+", o("Resize up"))
+k.set("n", "<leader>cj", "10<C-w>-", o("Resize down"))
 
--- Window movements
-k.set("n", "<leader><Space>", "<C-w>w") -- Cycle through windows
-k.set("n", "<leader>gh", "<C-w>h") -- Go to left window
-k.set("n", "<leader>gj", "<C-w>j") -- Go to down window
-k.set("n", "<leader>gk", "<C-w>k") -- Go to up window
-k.set("n", "<leader>gl", "<C-w>l") -- Go to right window
+-- Clipboard helpers
+k.set("n", "<leader>p", '"0p', o("Paste without overwriting register"))
 
--- Resize window by 10 units
-k.set("n", "<leader>ch", "10<C-w><")
-k.set("n", "<leader>cl", "10<C-w>>")
-k.set("n", "<leader>ck", "10<C-w>+")
-k.set("n", "<leader>cj", "10<C-w>-")
+-- Escape
+k.set("i", "<C-c>", "<Esc>", o("Escape insert mode"))
+k.set("n", "Q", "<nop>", o("Disable Q"))
 
--- Greatest remap ever
--- k.set("n", "<leader>p", '"_dP')
-k.set("n", "<leader>p", '"0p')
+-- NeoTree
+k.set("n", "<C-f>", function()
+	for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		if vim.bo[buf].filetype == "neo-tree" then
+			vim.api.nvim_set_current_win(win)
+			return
+		end
+	end
+	vim.cmd("Neotree toggle")
+end, o("Toggle NeoTree"))
 
--- next greatest remap ever : asbjornHaland
--- k.set("n", "<leader>y", '"+y')
--- k.set("v", "<leader>y", '"+y')
--- k.set("n", "<leader>Y", '"+Y')
---
-k.set("n", "<leader>d", '"_d')
-k.set("v", "<leader>d", '"_d')
-
--- Map Control-C to ESC
-k.set("i", "<C-c>", "<Esc>")
-
-k.set("n", "Q", "<nop>") -- don't know what it does
-
-k.set("n", "<C-f>", ":Neotree toggle<CR>", opts) -- Toggle NeoTree
--- k.set("n", "<C-f>", ":Lex! 20<CR>", opts) -- Toggle NeoTree
-
+-- Format
 k.set("n", "<leader>f", function()
-	vim.lsp.buf.format() -- format using default lsp
-end)
+	vim.lsp.buf.format()
+end, o("Format buffer"))
 
 -- Diagnostics
-k.set("n", "<C-k>", function()
-	vim.diagnostic.goto_prev()
-end, opts)
-k.set("n", "<C-j>", function()
-	vim.diagnostic.goto_next()
-end, opts)
+k.set("n", "<C-k>", function() vim.diagnostic.goto_prev() end, o("Previous diagnostic"))
+k.set("n", "<C-j>", function() vim.diagnostic.goto_next() end, o("Next diagnostic"))
+k.set("n", "<leader>k", "<cmd>lnext<CR>zz", o("Location list next"))
+k.set("n", "<leader>j", "<cmd>lprev<CR>zz", o("Location list prev"))
+k.set("n", "<leader>q", vim.diagnostic.setloclist, o("Open diagnostic quickfix"))
 
--- k.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- k.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-k.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-k.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- Search and replace word under cursor
+k.set("n", "<leader>r", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", o("Replace word"))
 
--- Leader-r to rename
-k.set("n", "<leader>r", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+-- File utilities
+k.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", o("Make file executable"))
+k.set("n", "<leader>cap", ":let @+=expand('%:p')<CR>", o("Copy absolute path"))
+k.set("n", "<leader>cp", ":let @+=expand('%:p:~:.')<CR>", o("Copy relative path"))
 
--- Leader-x to make file executable
-k.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- A fun thing to do
--- k.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>", { silent = true })
-
--- Compile and Run C Program
-k.set("", "<F9>", ":!g++ -o %< % && ./%< <CR>")
-
--- Toggle UndoTree
-k.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-
--- LAZYVIM mappings
--- floating terminal
--- local Util = require("lazyvim.util")
--- local lazyterm = function()
---   Util.terminal(nil, { cwd = Util.root() })
--- end
--- k.set("n", "<leader>ft", lazyterm, { desc = "Terminal (root dir)" })
--- k.set("n", "<leader>fT", function()
---   Util.terminal()
--- end, { desc = "Terminal (cwd)" })
--- k.set("n", "<c-`>", lazyterm, { desc = "Terminal (root dir)" })
--- k.set("t", "<c-`>", "<cmd>close<cr>", { desc = "Hide Terminal" })
--- k.set("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
-
--- lazy
-k.set("n", "<leader>lz", ":Lazy<CR>", { desc = "Lazy" })
-
--- telescope
--- local builtin = require("telescope.builtin")
--- k.set("<leader>sf", function() builtin.find_files({ no_ignore = false, hidden = true, }) end, { desc = "Search Files" })
--- k.set("<leader>lg", builtin.live_grep, { desc = "Live Grep" })
--- k.set("<leader>sd", builtin.diagnostics, { desc = "Show Diagnostics" })
--- k.set("<leader>?", builtin.oldfiles, { desc = "Find recently opened files" })
--- k.set("<leader>tj", builtin.jumplist, { desc = "Telescope Jumplist" })
--- k.set("<leader>/", builtin.current_buffer_fuzzy_find, { desc = "Fuzzy Find in current buffer" })
--- k.set("<leader>gf", builtin.git_files, { desc = "Search Git Files" })
-
--- Diagnostic keymaps
-k.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- Misc
+k.set("n", "<leader>u", vim.cmd.UndotreeToggle, o("Toggle UndoTree"))
+k.set("n", "<leader>lz", ":Lazy<CR>", o("Lazy"))
+k.set("", "<F9>", ":!g++ -o %< % && ./%< <CR>", o("Compile and run C++"))
